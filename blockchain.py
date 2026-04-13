@@ -28,3 +28,7 @@ class Blockchain:
     def hash_block(self, block):
         encoded = json.dumps(block,sort_keys=True).encode()
         return hashlib.sha256(encoded).hexdigest()
+
+    def add_transactions(self, transaction):
+        self.pending_transactions.append(transaction)
+
