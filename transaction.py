@@ -5,10 +5,12 @@ class Transaction:
         self.amount = amount
 
     def validate(self, blockchain):
-        sum = 0
+        balance= 0
         for block in blockchain.chain:
-            for transaction in block["transaction"]:
-                if transaction.sender==self.sender:
-                    sum-=transaction.amount
-                elif transaction.recipient==self.recipient:
-                    sum+=transaction.amount
+            for transaction in block["transactions"]:
+                if transaction[sender]==self.sender:
+                    balance-=transaction[amount]
+                elif transaction[recipient]==self.sender:
+                    balance+=transaction[amount]
+
+        return balance>=self.amount
